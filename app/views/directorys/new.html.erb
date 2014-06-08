@@ -1,3 +1,11 @@
 <h1>Welcome to your first 'real' project.</h1>
 
 <p>The first thing we will add is the project directory <%= @directory.root %>.</p>
+
+<p>The contents of <%= @directory.root %> are:
+<ul>
+  <% @directory.root_contents.each do |file| %>
+    <li><%= file %></li>
+  <% end %>
+</ul>
+</p>
