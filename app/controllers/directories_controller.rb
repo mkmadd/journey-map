@@ -1,4 +1,4 @@
-class DirectorysController < ApplicationController
+class DirectoriesController < ApplicationController
   
   def new
     @directory = Directory.new

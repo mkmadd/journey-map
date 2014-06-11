@@ -54,6 +54,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   
-  root to: 'directorys#new'
+  root to: 'directories#new'
   
 end
