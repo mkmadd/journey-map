@@ -14,3 +14,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore Aptana Studio 3 files
+/.project
+/.settings
+
+# Security
+/config/database.yml

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :entries
+  root to: 'directories#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -54,6 +57,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   
-  root to: 'directories#new'
   
 end
