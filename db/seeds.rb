@@ -11,12 +11,13 @@ root_contents = dir_hash('.') #Dir.entries('.')
 Entry.delete_all
 
 def enter_entry(entry_hash)
-  Entry.create!(name: entry_hash[:name])
-  unless entry_hash[:contains].blank?
-    entry_hash[:contains].each do |entry|
-      enter_entry(entry)
+  entry = Entry.create!(name: entry_hash[:name])
+  if entry_hash[:contains].present?
+    entry_hash[:contains].each do |child|
+      entry.make_parent_of!(enter_entry(child))
     end
   end
+  entry
 end
 
 enter_entry(root_contents)

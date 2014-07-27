@@ -1,3 +1,19 @@
-<% @entries.each do |entry| %>
-	<%= link_to entry[:name], entry_path(entry), remote: true %><br />
-<% end %>
+<p>Project Directory
+	<ul>
+	<% @entries.each do |entry| %>
+		<% def print_dir(dir) %>
+			<li><%= link_to dir[:name], entry_path(dir), remote: true %>
+			<% if dir.has_children? %>
+				<ul>
+				<% dir.children.each do |child| %>
+					<% print_dir(child) %>
+				<% end %>
+				</ul>
+			<% end %>
+		<% end %>
+		<% unless entry.has_parent? %>
+			<% print_dir(entry) %>
+		<% end %>
+	<% end %>
+	</ul>
+</p>

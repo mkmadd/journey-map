@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :entries
+  resources :entries do
+    member do
+      get :children, :parent
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
   root to: 'directories#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
