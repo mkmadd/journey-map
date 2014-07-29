@@ -1,3 +1,12 @@
-<%#= render 'shared/sidebar' %>
 <p>Name: <%= entry.name %><p>
-<p>Description: <%= entry.description %></p>
+<p>Tags: <%= entry.tags.join(", ") %></p>
+<p>Description: <%= sanitize entry.description %></p>
+<p>Children:<br />
+	<% entry.children.each do |child| %>
+		<%= link_to child[:name], entry_path(child), remote: true %><br />
+	<% end %>
+</p>
+<%= form_for(entry, html: { method: :delete }, remote: true) do |f| %>
+  <%= f.submit "Delete", class: "btn btn-large" %>
+<% end %>
+<%= button_to "Edit", edit_entry_path, method: "get", remote: true %>

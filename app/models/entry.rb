@@ -24,4 +24,18 @@ class Entry < ActiveRecord::Base
   def make_child_of!(other_entry)
     other_entry.make_parent_of!(self)
   end
+  
+  def destroy_children
+    # Recursively destroys all child entries
+    # Returns ids of all child entries destroyed
+    roll_call = []
+    if has_children?
+      children.each do |child|
+        roll_call << child.id
+        roll_call += child.destroy_children
+        child.destroy
+      end
+    end
+    roll_call
+  end
 end

@@ -2,7 +2,7 @@
 	<ul>
 	<% @entries.each do |entry| %>
 		<% def print_dir(dir) %>
-			<li><%= link_to dir[:name], entry_path(dir), remote: true %>
+			<li id="entry_link_<%= dir[:id] %>"><%= link_to dir[:name], entry_path(dir), remote: true %>
 			<% if dir.has_children? %>
 				<ul>
 				<% dir.children.each do |child| %>

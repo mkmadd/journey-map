@@ -1,0 +1,12 @@
+<%= form_for(entry, remote: true) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %><br />
+	
+	<%= f.label :tags %>
+	<%= f.text_field :tags, value: entry.tags.join(', ') %><br />
+	
+	<%= f.label :description %>
+	<%= f.text_area :description %><br />
+	
+	<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+<% end %>

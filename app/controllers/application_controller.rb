@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def catch_js_response_errors
     if response.content_type == 'text/javascript'
       literal_js = (response.body.strip.inspect)[1..-2]
+      #puts literal_js
       response.body = "try { eval(\"#{literal_js}\"); }\ncatch (e) { console.log(e); }"
     end
   end
