@@ -1,0 +1,15 @@
+$("#display").html("<%= escape_javascript(render partial: 'show', 
+										locals: { entry: @entry }) %>");
+<% if @entry.parent.present? %>
+	var sel = $("#entry_link_<%= @entry.parent.id %>");
+	if(!sel.has('ul').length) {
+		sel.append('<ul/>');
+	};
+	$('<li id="entry_link_<%= @entry[:id] %>"/>').appendTo($("ul", sel))
+		.html("<%= escape_javascript(link_to @entry[:name], 
+								entry_path(@entry), remote: true) %>");
+<% else %>
+	$('<li id="entry_link_<%= @entry[:id] %>"/>').appendTo("#root")
+				.html("<%= escape_javascript(link_to @entry[:name], 
+								entry_path(@entry), remote: true) %>");
+<% end %>

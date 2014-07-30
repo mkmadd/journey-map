@@ -1,7 +1,8 @@
 class Entry < ActiveRecord::Base
   has_many :relationships, foreign_key: "parent_id", dependent: :destroy
   has_many :children, through: :relationships
-  has_one :reverse_relationship, foreign_key: "child_id", class_name: "Relationship", dependent: :destroy
+  has_one :reverse_relationship, foreign_key: "child_id", 
+          class_name: "Relationship", dependent: :destroy
   has_one :parent, through: :reverse_relationship
   validates :name, presence: true
   

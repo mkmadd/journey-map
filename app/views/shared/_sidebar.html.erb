@@ -1,8 +1,11 @@
 <p>Project Directory
-	<ul>
+	<%= button_to "New Entry", new_entry_path(id: nil), 
+							method: "get", remote: true %>
+	<ul id="root">
 	<% @entries.each do |entry| %>
 		<% def print_dir(dir) %>
-			<li id="entry_link_<%= dir[:id] %>"><%= link_to dir[:name], entry_path(dir), remote: true %>
+			<li id="entry_link_<%= dir[:id] %>">
+				<%= link_to dir[:name], entry_path(dir), remote: true %></li>
 			<% if dir.has_children? %>
 				<ul>
 				<% dir.children.each do |child| %>

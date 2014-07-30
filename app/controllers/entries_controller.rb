@@ -1,5 +1,20 @@
 class EntriesController < ApplicationController
   def new
+    @entry = Entry.new
+    @parent = params[:id]
+  end
+  
+  def create
+    parent_id = params[:entry][:parent]
+    params[:entry].delete(:parent)
+    @entry = Entry.new(entry_params)
+    if @entry.save
+      parent = Entry.find(parent_id) if parent_id.present?
+      @entry.make_child_of!(parent) if parent.present?
+    else
+      @parent = parent_id
+      render 'new'
+    end
   end
   
   def show

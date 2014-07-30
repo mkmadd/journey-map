@@ -9,4 +9,6 @@
 <%= form_for(entry, html: { method: :delete }, remote: true) do |f| %>
   <%= f.submit "Delete", class: "btn btn-large" %>
 <% end %>
-<%= button_to "Edit", edit_entry_path, method: "get", remote: true %>
+<%= button_to "Edit", edit_entry_path(entry), method: "get", remote: true %>
+<%= button_to "New Child", new_entry_path(id: entry.id), 
+							method: "get", remote: true %>

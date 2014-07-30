@@ -1,0 +1,5 @@
+<%= form_for(entry, remote: true) do |f| %>
+	<%= render 'fields', f: f, entry: entry %>
+	<%= f.hidden_field :parent, value: parent %><br />
+	<%= f.submit "Create Entry", class: "btn btn-large btn-primary" %>
+<% end %>
